@@ -11,7 +11,7 @@ public class Bird implements GameEntity {
     private Sprite bird;
     private int currentIndex = 0;
     private long prevNow  = 0L;
-
+    private float termianlVel = 10;
     private Asset[] assets = {
             new Asset("images/bird1.png", BIRD_WIDTH, BIRD_HEIGHT),
             new Asset("images/bird2.png", BIRD_WIDTH, BIRD_HEIGHT),
@@ -32,6 +32,20 @@ public class Bird implements GameEntity {
 
     @Override
     public void update(long now) {
+        updateBirdPlaying();
+        updateAsset(now);
+    }
+
+    private void updateBirdPlaying() {
+        double vel = bird.getVelY();
+
+        if(vel>termianlVel)
+            bird.setVelY(vel+ .2);
+        else
+            bird.setVelY(vel+ .44);
+    }
+
+    private void updateAsset(long now) {
         if(now - prevNow > 90000000){
             currentIndex++;
             prevNow = now;
@@ -40,6 +54,7 @@ public class Bird implements GameEntity {
         bird.changeImage(assets[currentIndex]);
         bird.update();
     }
+
     public void jumpHandler(){
         bird.setVelY(-8);
     }
