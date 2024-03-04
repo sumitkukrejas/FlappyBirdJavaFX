@@ -22,7 +22,7 @@ public class Sprite {
         this.width = asset.getWidth();
         this.height = asset.getHeight();
         this.path = asset.getPath();
-        this.image = new Image(asset.getPath(), asset.getHeight(), asset.getWidth(), false, false);
+        this.image = new Image(asset.getPath(), asset.getWidth(), asset.getHeight(), false, false);
     }
 
 
@@ -36,8 +36,13 @@ public class Sprite {
         this.posX = posX;
         this.posY = posY;
     }
-    public void renderSprite(){
+    public void render(){
         this.gc.drawImage(this.getImage(), this.posX, this.posY);
+    }
+
+    public void update(){
+        this.posX += velX;
+        this.posY += velY;
     }
 
     public String getPath() {
@@ -93,6 +98,11 @@ public class Sprite {
     }
 
     public void setVelY(double velY) {
+        this.velY = velY;
+    }
+
+    public void setVel(double velX , double velY){
+        this.velX = velX;
         this.velY = velY;
     }
 

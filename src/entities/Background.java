@@ -12,23 +12,19 @@ public class Background implements GameEntity{
     private static double HEIGHT = 512;
     Asset asset = new Asset("images/background.png", WIDTH , HEIGHT);
     List<Sprite> sprites;
-    public Background(double screenHeight, double screenWidth ,GraphicsContext gc){
+    public Background(double screenWidth, double screenHeight,GraphicsContext gc){
         sprites = new ArrayList<>();
         double backgroundWidth = 0;
         do{
             Sprite background = new Sprite(asset, gc);
-
             if(screenHeight-112 < HEIGHT)
                 background.resizeImage(WIDTH, HEIGHT);
             else
-                background.resizeImage(WIDTH, screenHeight-112);
-
+                background.resizeImage(WIDTH, screenHeight - 112);
             if(screenHeight > HEIGHT)
                 background.setPos(backgroundWidth, 0);
-
             else
                 background.setPos(backgroundWidth, screenHeight - HEIGHT);
-
             sprites.add(background);
             backgroundWidth+= WIDTH;
         }
@@ -38,7 +34,7 @@ public class Background implements GameEntity{
     @Override
     public void render() {
         for(Sprite sprite : sprites){
-            sprite.renderSprite();
+            sprite.render();
         }
     }
 

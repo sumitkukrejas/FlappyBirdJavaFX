@@ -4,15 +4,11 @@ import helpers.Asset;
 import helpers.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
-import java.awt.*;
-import java.util.List;
-
 public class Bird implements GameEntity {
 
     private double BIRD_WIDTH = 56;
     private double BIRD_HEIGHT = 40;
-
-    private Sprite birdSprite;
+    private Sprite bird;
     private int currentIndex = 0;
     private long prevNow  = 0L;
 
@@ -23,24 +19,28 @@ public class Bird implements GameEntity {
     };
 
     public Bird(double screenWidth, double screenHeight, GraphicsContext gc) {
-        birdSprite = new Sprite(assets[currentIndex], gc);
-        birdSprite.setPosX(screenWidth / 2 - BIRD_WIDTH / 2);
-        birdSprite.setPosY((screenHeight - 112) / 2);
-        birdSprite.setVelY(-5);
+        bird = new Sprite(assets[currentIndex], gc);
+        bird.setPosX(screenWidth / 2 - BIRD_WIDTH / 2);
+        bird.setPosY((screenHeight - 112) / 2);
+        bird.setVel(0,0);
     }
 
     @Override
     public void render() {
-        birdSprite.renderSprite();
+        bird.render();
     }
 
     @Override
     public void update(long now) {
-        if(now - prevNow > 100000000L){
+        if(now - prevNow > 90000000){
             currentIndex++;
             prevNow = now;
         }
         if(currentIndex==3) currentIndex = 0;
-        birdSprite.changeImage(assets[currentIndex]);
+        bird.changeImage(assets[currentIndex]);
+        bird.update();
+    }
+    public void jumpHandler(){
+        bird.setVelY(-8);
     }
 }
