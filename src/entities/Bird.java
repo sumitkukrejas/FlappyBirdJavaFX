@@ -1,9 +1,9 @@
 package entities;
 
 import helpers.Asset;
+import helpers.GameState;
 import helpers.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-
 public class Bird implements GameEntity {
 
     private double BIRD_WIDTH = 56;
@@ -32,7 +32,12 @@ public class Bird implements GameEntity {
 
     @Override
     public void update(long now) {
-        updateBirdPlaying();
+        if(!GameState.gameStarted && !GameState.gameEnded){
+
+        }
+        else if(GameState.gameStarted){
+            updateBirdPlaying();
+        }
         updateAsset(now);
     }
 

@@ -3,6 +3,7 @@ import entities.Background;
 import entities.Bird;
 import entities.Floor;
 import entities.GameEntity;
+import helpers.GameState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -17,6 +18,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FlappyBirdDesktop extends  Application{
+    public static boolean gameStarted = false;
+    public static boolean gameEnded = false;
     Font font = Font.loadFont("images/04b_19.ttf", 42);
     private double width = 450;
     private double height = 600;
@@ -29,11 +32,9 @@ public class FlappyBirdDesktop extends  Application{
     private GraphicsContext gc;
     private AnimationTimer timer;
     private Map<String, GameEntity> gameEntities = new HashMap<>();
-
     public static void main(String[] args) {
         launch(args);
     }
-
     @Override
     public void start(Stage stage) throws Exception {
         setStageProperties(stage);
@@ -86,7 +87,14 @@ public class FlappyBirdDesktop extends  Application{
     private void setInputHandlers(Scene scene) {
         scene.setOnKeyPressed(event->{
             if(event.getCode().equals(KeyCode.SPACE)){
-                bird.jumpHandler();
+                if(gameStarted){
+                    System.out.println("spaced");
+                    bird.jumpHandler();
+                    GameState.gameStarted = true;
+                }
+                else{
+                    gameStarted = true;
+                }
             }
             if(event.getCode().equals(KeyCode.ENTER)){
             }

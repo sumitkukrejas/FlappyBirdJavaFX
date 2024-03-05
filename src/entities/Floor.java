@@ -1,6 +1,7 @@
 package entities;
 
 import helpers.Asset;
+import helpers.GameState;
 import helpers.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -34,14 +35,17 @@ public class Floor implements GameEntity {
 
     @Override
     public void update(long now) {
-        for(Sprite floor : floors){
-            floor.update();
-        }
-        if(floors.get(0).getPosX()< -1 * FLOOR_WIDTH){
-            Sprite firstFloor = floors.get(0);
-            floors.remove(0);
-            firstFloor.setPosX(floors.get(floors.size()-1).getPosX() + FLOOR_WIDTH);
-            floors.add(firstFloor);
+        if(GameState.gameStarted){
+            for(Sprite floor : floors){
+                floor.update();
+            }
+
+            if(floors.get(0).getPosX()< -1 * FLOOR_WIDTH){
+                Sprite firstFloor = floors.get(0);
+                floors.remove(0);
+                firstFloor.setPosX(floors.get(floors.size()-1).getPosX() + FLOOR_WIDTH);
+                floors.add(firstFloor);
+            }
         }
     }
 }
