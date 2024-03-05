@@ -1,8 +1,5 @@
 //--module-path ${PATH_JAVAFX} --add-modules javafx.controls,javafx.fxml
-import entities.Background;
-import entities.Bird;
-import entities.Floor;
-import entities.GameEntity;
+import entities.*;
 import helpers.GameState;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
@@ -61,6 +58,7 @@ public class FlappyBirdDesktop extends  Application{
         bird = new Bird(width, height, gc);
         gameEntities.put("bird", bird);
         gameEntities.put("floor", new Floor(width, height, gc));
+        gameEntities.put("pipes", new Pipes(width, height, gc));
         render();
     }
 
@@ -88,7 +86,6 @@ public class FlappyBirdDesktop extends  Application{
         scene.setOnKeyPressed(event->{
             if(event.getCode().equals(KeyCode.SPACE)){
                 if(gameStarted){
-                    System.out.println("spaced");
                     bird.jumpHandler();
                     GameState.gameStarted = true;
                 }
