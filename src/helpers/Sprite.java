@@ -1,5 +1,6 @@
 package helpers;
 
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -43,6 +44,14 @@ public class Sprite {
     public void update(){
         this.posX += velX;
         this.posY += velY;
+    }
+
+    public Rectangle2D getSize(){
+        return new Rectangle2D(this.posX, this.posY, this.getWidth(), this.getHeight());
+    }
+
+    public boolean intersects(Sprite sprite){
+        return this.getSize().intersects(sprite.getSize());
     }
 
     public String getPath() {

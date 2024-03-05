@@ -33,10 +33,18 @@ public class Bird implements GameEntity {
     @Override
     public void update(long now) {
         if(!GameState.gameStarted && !GameState.gameEnded){
-
+            //bird floating
+        }
+        else if(GameState.gameEnded){
+            //game stops
+            bird.setVel(0,0);
         }
         else if(GameState.gameStarted){
             updateBirdPlaying();
+            if(GameState.activePipes[0].intersects(this.bird) || GameState.activePipes[1].intersects(this.bird)){
+                GameState.gameStarted = false;
+                GameState.gameEnded = true;
+            }
         }
         updateAsset(now);
     }

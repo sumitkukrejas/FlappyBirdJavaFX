@@ -47,5 +47,10 @@ public class Floor implements GameEntity {
                 floors.add(firstFloor);
             }
         }
+        else if(GameState.gameEnded){
+            for(Sprite sprite : floors){
+                sprite.setVel(0,0);
+            }
+        }
     }
 }

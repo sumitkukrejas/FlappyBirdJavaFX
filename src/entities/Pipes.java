@@ -43,9 +43,26 @@ public class Pipes implements GameEntity{
     }
     @Override
     public void render() {
+        if(GameState.gameStarted){
+            makePipesInfinite();
+            for(int i = 0 ; i< spritesUp.size() ; i++){
+                if(spritesUp.get(i).getPosX()>screenWidth/2){
+                    GameState.activePipes[0] = spritesUp.get(i);
+                    GameState.activePipes[1] = spritesDown.get(i);
+                    break;
+                }
+            }
+        }
+        else if(GameState.gameEnded){
+            for(Sprite sprite : spritesDown){
+                sprite.setVel(0,0);
+            }
+            for(Sprite sprite: spritesUp){
+                sprite.setVel(0,0);
+            }
+        }
         for(Sprite pipeUp : spritesUp) pipeUp.render();
         for(Sprite pipeDown : spritesDown) pipeDown.render();
-        makePipesInfinite();
     }
 
     private void makePipesInfinite() {
