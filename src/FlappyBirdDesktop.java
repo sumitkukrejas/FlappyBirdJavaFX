@@ -1,20 +1,18 @@
+//--module-path ${PATH_JAVAFX} --add-modules javafx.controls,javafx.fxml
 import entities.Background;
 import entities.Bird;
 import entities.Floor;
 import entities.GameEntity;
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.text.Font;
-import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 

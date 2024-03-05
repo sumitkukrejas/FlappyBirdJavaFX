@@ -22,7 +22,6 @@ public class Floor implements GameEntity {
             floor.setVel(-2.5, 0);
             floors.add(floor);
             floorWidth += FLOOR_WIDTH;
-
         }
     }
 
@@ -37,6 +36,12 @@ public class Floor implements GameEntity {
     public void update(long now) {
         for(Sprite floor : floors){
             floor.update();
+        }
+        if(floors.get(0).getPosX()< -1 * FLOOR_WIDTH){
+            Sprite firstFloor = floors.get(0);
+            floors.remove(0);
+            firstFloor.setPosX(floors.get(floors.size()-1).getPosX() + FLOOR_WIDTH);
+            floors.add(firstFloor);
         }
     }
 }
