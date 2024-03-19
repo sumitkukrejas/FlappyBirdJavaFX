@@ -12,6 +12,8 @@ public class Bird implements GameEntity {
     private int currentIndex = 0;
     private long prevNow  = 0L;
     private float termianlVel = 10;
+    private double screenHeight;
+    private double screenWidth;
     private Asset[] assets = {
             new Asset("images/bird1.png", BIRD_WIDTH, BIRD_HEIGHT),
             new Asset("images/bird2.png", BIRD_WIDTH, BIRD_HEIGHT),
@@ -19,6 +21,8 @@ public class Bird implements GameEntity {
     };
 
     public Bird(double screenWidth, double screenHeight, GraphicsContext gc) {
+        this.screenHeight = screenHeight;
+        this.screenWidth = screenWidth;
         bird = new Sprite(assets[currentIndex], gc);
         bird.setPosX(screenWidth / 2 - BIRD_WIDTH / 2);
         bird.setPosY((screenHeight - 112) / 2);
@@ -38,16 +42,23 @@ public class Bird implements GameEntity {
         }
         else if(GameState.gameEnded){
             //game stops
-            bird.setVel(0,0);
+            birdFallDown();
         }
         else if(GameState.gameStarted){
             updateBirdPlaying();
-            if(GameState.activePipes[0].intersects(this.bird) || GameState.activePipes[1].intersects(this.bird)){
+            if(bird.getPosY() + BIRD_HEIGHT > screenHeight-135 ||GameState.activePipes[0].intersects(this.bird) || GameState.activePipes[1].intersects(this.bird)){
                 GameState.gameStarted = false;
                 GameState.gameEnded = true;
             }
         }
         updateAsset(now);
+    }
+
+    private void birdFallDown() {
+        bird.setVelY(8);
+        if(bird.getPosY()>=screenHeight-BIRD_HEIGHT-112){
+            bird.setVel(0,0);
+        }
     }
 
     private void updateBirdPlaying() {

@@ -59,6 +59,7 @@ public class FlappyBirdDesktop extends  Application{
         gameEntities.put("bird", bird);
         gameEntities.put("floor", new Floor(width, height, gc));
         gameEntities.put("pipes", new Pipes(width, height, gc));
+        gameEntities.put("title", new Title(width, height, gc));
         render();
     }
 
