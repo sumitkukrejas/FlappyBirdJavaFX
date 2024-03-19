@@ -4,10 +4,8 @@ import helpers.Asset;
 import helpers.GameState;
 import helpers.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-
 import java.util.ArrayList;
 import java.util.List;
-
 public class Floor implements GameEntity {
 
     private int FLOOR_WIDTH = 336;

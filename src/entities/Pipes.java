@@ -3,12 +3,15 @@ package entities;
 import helpers.Asset;
 import helpers.GameState;
 import helpers.Sprite;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 import java.util.List;
 public class Pipes implements GameEntity{
     private static double PIPE_GAP = 364;
-    private static double PIPE_START_DISTANCE = -10;
+    private static double PIPE_START_DISTANCE = 200;
     private static double PIPE_WIDTH = 62;
     private static double PIPE_HEIGHT = 2000;
     Asset assetUp = new Asset("images/up_pipe.png", PIPE_WIDTH, PIPE_HEIGHT);
@@ -43,12 +46,15 @@ public class Pipes implements GameEntity{
     }
     @Override
     public void render() {
+
+
         if(GameState.gameStarted){
             makePipesInfinite();
             for(int i = 0 ; i< spritesUp.size() ; i++){
                 if(spritesUp.get(i).getPosX()>screenWidth/2){
                     GameState.activePipes[0] = spritesUp.get(i);
                     GameState.activePipes[1] = spritesDown.get(i);
+                    Rectangle2D rectup = spritesUp.get(i).getSize();
                     break;
                 }
             }

@@ -4,10 +4,11 @@ import helpers.Asset;
 import helpers.Sprite;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Background implements GameEntity{
+public class Background implements GameEntity {
     private static double WIDTH = 288;
     private static double HEIGHT = 512;
     Asset asset = new Asset("images/background.png", WIDTH , HEIGHT);

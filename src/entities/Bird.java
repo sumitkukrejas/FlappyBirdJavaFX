@@ -34,6 +34,7 @@ public class Bird implements GameEntity {
     public void update(long now) {
         if(!GameState.gameStarted && !GameState.gameEnded){
             //bird floating
+            bird.setVel(0,Math.sin((double)now/90000000));
         }
         else if(GameState.gameEnded){
             //game stops
